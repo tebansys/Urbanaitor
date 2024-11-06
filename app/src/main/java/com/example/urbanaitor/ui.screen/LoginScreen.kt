@@ -9,10 +9,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
+
 @Composable
 fun LoginScreen(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -29,7 +31,7 @@ fun LoginScreen(navController: NavHostController) {
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("Email") },
+                label = { Text("Username") },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -48,10 +50,19 @@ fun LoginScreen(navController: NavHostController) {
             Button(
                 onClick = {
                     // Aquí agregaríamos la lógica de autenticación
+                    if (email == "user" && password == "123456") { // Simplified validation
+//                        onLoginSuccess()
+                        navController.navigate("bottom_navigation")
+                    } else {
+                        errorMessage = "Invalid credentials"
+                    }
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Login")
+            }
+            errorMessage?.let {
+                Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(top = 8.dp))
             }
         }
     }
