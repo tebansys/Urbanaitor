@@ -26,8 +26,7 @@ dependencyResolutionManagement {
                 create<BasicAuthentication>("basic")
             }
             credentials {
-                username = "mapbox"
-                password = "sk.eyJ1Ijoic3RlYmFuODIiLCJhIjoiY20yeHFqeHE5MDhpMTJscHhwMWM3NDUwNCJ9.XsXpQNYTjiGln5LDxU5Xvg"
+                username = "mapbox" 
             }
         }
     }
